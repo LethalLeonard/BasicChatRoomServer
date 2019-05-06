@@ -29,8 +29,7 @@ public class ClientMessageListener
                         {
                             if (others.getOutput() != socket.getOutputStream())
                             {
-                                PrintWriter repeatToOthers = new PrintWriter(others.getOutput(), true);
-                                repeatToOthers.println(recievedMessage);
+                                WorldInfo.sendMessage(others, recievedMessage);
                             }
                         }
                     }

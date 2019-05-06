@@ -49,16 +49,23 @@ public class WorldInfo
         }
     }
 
-    public static void sendServerMessage(String message)
+    public static void sendServerMessage(int opcode, String message)
     {
         for (Client client : clients)
         {
             if (client != null)
             {
-                Logger.logDebug("NOT NULL");
                 PrintWriter out = new PrintWriter(client.getOutput(), true);
-                out.println(message);
+                out.println(((char)opcode + message));
             }
+        }
+    }
+
+    public static void sendMessage(Client client, String message)
+    {
+        if(client != null)
+        {PrintWriter repeatToOthers = new PrintWriter(client.getOutput(), true);
+            repeatToOthers.println(((char)2 + message).toCharArray());
         }
     }
 }

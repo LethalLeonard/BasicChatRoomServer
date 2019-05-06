@@ -16,7 +16,7 @@ public class ServerMessageSender
             while (true)
             {
                 String toSend = stdIn.readLine();
-                WorldInfo.sendServerMessage("Server: " + toSend);
+                WorldInfo.sendServerMessage(2, "Server: " + toSend);
             }
         }catch(IOException e)
         {
