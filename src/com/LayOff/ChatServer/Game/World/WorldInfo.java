@@ -39,6 +39,7 @@ public class WorldInfo
             {
                 if (toRemove == clients[i])
                 {
+                    toRemove.getServiceLoader().shutdown();
                     clients[i] = null;
                     Logger.logDebug("Client closed.");
                 }
