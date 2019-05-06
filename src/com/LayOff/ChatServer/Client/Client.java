@@ -15,6 +15,15 @@ public class Client
     private final ExecutorService serviceLoader = Executors.newFixedThreadPool(1);
 
     private String IP;
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
     private String playerName;
     private int privilege;
 
@@ -47,7 +56,7 @@ public class Client
             this.output = socket.getOutputStream();
             this.socket = socket;
             this.IP = socket.getRemoteSocketAddress().toString();
-            serviceLoader.execute(() -> ClientMessageListener.init(socket));
+            serviceLoader.execute(() -> ClientMessageListener.init(this));
         }catch(IOException e){
             Logger.logException(e);
             Logger.logError("Error creating client object.");
