@@ -12,11 +12,11 @@ import java.util.concurrent.Executors;
 
 public class Client
 {
-    private static final ExecutorService serviceLoader = Executors.newFixedThreadPool(2);
+    private final ExecutorService serviceLoader = Executors.newFixedThreadPool(1);
 
-    private static String IP;
-    private static String playerName;
-    private static int privilege;
+    private String IP;
+    private String playerName;
+    private int privilege;
 
     private InputStream input;
     private OutputStream output;
@@ -37,6 +37,8 @@ public class Client
         return output;
     }
 
+    public ExecutorService getServiceLoader() {return serviceLoader;}
+
     public Client (Socket socket)
     {
         try
@@ -44,6 +46,7 @@ public class Client
             this.input = socket.getInputStream();
             this.output = socket.getOutputStream();
             this.socket = socket;
+            this.IP = socket.getRemoteSocketAddress().toString();
             serviceLoader.execute(() -> ClientMessageListener.init(socket));
         }catch(IOException e){
             Logger.logException(e);
