@@ -38,7 +38,7 @@ public class ClientMessageListener
         }
     }
 
-    private static void handleMessageFromClient(String message, Client client) throws IOException {
+    private static void handleMessageFromClient(String message, Client client) {
 
         if(message != null)
         {
